@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:tasky/controllers/newtasks_provider.dart';
 import 'package:tasky/controllers/tasks_provider.dart';
 import 'package:tasky/shared/widgets/completed_task_widget.dart';
 import 'package:tasky/shared/widgets/pending_task_widget.dart';
@@ -16,6 +17,8 @@ class _CompletedTasksState extends State<CompletedTasks> {
   @override
   Widget build(BuildContext context) {
     var completedTasks = context.watch<TaskProvider>().myCompletedTasks;
+    var notifier = Provider.of<TaskProvider>(context);
+    notifier.getCompletedTasks();
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: SizedBox(

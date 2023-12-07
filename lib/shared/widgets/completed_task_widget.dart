@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:tasky/controllers/newtasks_provider.dart';
 import 'package:tasky/controllers/tasks_provider.dart';
 import 'package:tasky/models/task_model.dart';
 
