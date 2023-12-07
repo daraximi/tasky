@@ -40,7 +40,7 @@ class _PendingTaskState extends State<PendingTask> {
                       pending = true;
                     });
                     context.read<TaskProvider>().addToCompletedList(ctask);
-                    Future.delayed(Duration(milliseconds: 400)).then((value) {
+                    Future.delayed(Duration(milliseconds: 300)).then((value) {
                       context
                           .read<TaskProvider>()
                           .removeFromPendingList(task, widget.index);
@@ -52,9 +52,11 @@ class _PendingTaskState extends State<PendingTask> {
               IconButton(
                   onPressed: () {
                     Task task = Task(task: widget.task, completed: false);
-                    context
-                        .read<TaskProvider>()
-                        .removeFromPendingList(task, widget.index);
+                    Future.delayed(Duration(milliseconds: 200)).then((value) {
+                      context
+                          .read<TaskProvider>()
+                          .removeFromPendingList(task, widget.index);
+                    });
                   },
                   icon: Icon(Icons.delete))
             ],

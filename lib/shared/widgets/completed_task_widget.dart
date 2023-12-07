@@ -36,7 +36,23 @@ class _CompletedTaskState extends State<CompletedTask> {
               IconButton(
                   onPressed: () {
                     Task task = Task(task: widget.task, completed: false);
-                    context.read<TaskProvider>().removeFromCompletedList(task, widget.index);
+
+                    Future.delayed(Duration(milliseconds: 300)).then((value) {
+                      context.read<TaskProvider>().addToPendingList(task);
+                      context
+                          .read<TaskProvider>()
+                          .removeFromCompletedList(task, widget.index);
+                    });
+                  },
+                  icon: Icon(Icons.pending_actions)),
+              IconButton(
+                  onPressed: () {
+                    Future.delayed(Duration(milliseconds: 200)).then((value) {
+                      Task task = Task(task: widget.task, completed: false);
+                      context
+                          .read<TaskProvider>()
+                          .removeFromCompletedList(task, widget.index);
+                    });
                   },
                   icon: Icon(Icons.delete))
             ],
