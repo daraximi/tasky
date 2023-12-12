@@ -21,19 +21,23 @@ class _TasksScreenState extends State<TasksScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        //drawer: CustomDrawer(),
-        appBar: AppBar(
-          actions: [
-            IconButton(
-                iconSize: 28,
-                onPressed: () => _changeScreen(),
-                icon: Icon(changeScreen ? Icons.done : Icons.pending))
-          ],
-          title: const Text('Tasks'),
-          backgroundColor: Colors.lightBlue.withAlpha(50),
-        ),
-        backgroundColor: Colors.white,
-        body: changeScreen ? PendingTasks() : CompletedTasks());
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          drawer: CustomDrawer(),
+          appBar: AppBar(
+            elevation: 0,
+            actions: [
+              IconButton(
+                  iconSize: 28,
+                  onPressed: () => _changeScreen(),
+                  icon: Icon(changeScreen ? Icons.done : Icons.pending))
+            ],
+            title: const Text('Tasks'),
+          ),
+          backgroundColor: Theme.of(context).colorScheme.background,
+          body: changeScreen ? PendingTasks() : CompletedTasks()),
+    );
   }
 }

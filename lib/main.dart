@@ -7,6 +7,8 @@ import 'package:tasky/controllers/tasks_provider.dart';
 import 'package:tasky/models/task_model.dart';
 import 'package:tasky/pages/auth/login.dart';
 import 'package:tasky/pages/tasks_screen.dart';
+import 'package:tasky/theme/theme_constants.dart';
+import 'package:tasky/theme/theme_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +19,8 @@ void main() async {
     create: (_) => TaskProvider(),
   ));
 }
+
+ThemeManager _themeManager = ThemeManager();
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -29,13 +33,14 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {
+        final themeProvider = Provider.of<TaskProvider>(context);
+        themeProvider.getTheme();
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Tasky',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+          theme: lightTheme,
+          darkTheme: darkTheme,
+          themeMode: themeProvider.themeMode,
           home: const TasksScreen(),
         );
       },

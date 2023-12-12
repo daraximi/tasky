@@ -29,7 +29,7 @@ class _PendingTaskState extends State<PendingTask> {
         children: [
           Text(
             widget.task,
-            style: TextStyle(color: Colors.black, fontSize: 14.h),
+            style: TextStyle(fontSize: 14.h),
           ),
           Row(
             children: [

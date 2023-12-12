@@ -16,17 +16,13 @@ class PendingTasks extends StatefulWidget {
 class _PendingTasksState extends State<PendingTasks> {
   TextEditingController taskController = TextEditingController();
 
-  addNewTask() {
-    ;
-  }
-
   @override
   Widget build(BuildContext context) {
     var pendingTasks = context.watch<TaskProvider>().myPendingTasks;
     var notifier = Provider.of<TaskProvider>(context);
     notifier.getPendingTasks();
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8, bottom: 0),
       child: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
@@ -35,6 +31,10 @@ class _PendingTasksState extends State<PendingTasks> {
             Positioned(
                 top: 0.h,
                 child: Container(
+                  decoration: BoxDecoration(
+                      color:
+                          Theme.of(context).secondaryHeaderColor.withAlpha(90),
+                      borderRadius: BorderRadius.circular(40)),
                   padding: EdgeInsets.all(2.h),
                   height: 50.h,
                   width: 345.w,
@@ -64,19 +64,21 @@ class _PendingTasksState extends State<PendingTasks> {
                         fillColor: Colors.black,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide(color: Colors.blue))),
+                            borderSide: BorderSide(
+                                color: Theme.of(context).primaryColor))),
                   ),
                 )),
             Positioned(
               top: 60.h,
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20)),
-                height: 300.h,
+                height: 540.h,
                 width: 345.w,
                 child: ListView.builder(
+                  scrollDirection: Axis.vertical,
                   itemCount: pendingTasks.length,
                   itemBuilder: (context, index) {
                     var singleTask = pendingTasks[index];

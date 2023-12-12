@@ -28,9 +28,7 @@ class _CompletedTaskState extends State<CompletedTask> {
           Text(
             widget.task,
             style: TextStyle(
-                color: Colors.grey,
-                fontSize: 15.h,
-                decoration: TextDecoration.lineThrough),
+                fontSize: 15.h, decoration: TextDecoration.lineThrough),
           ),
           Row(
             children: [

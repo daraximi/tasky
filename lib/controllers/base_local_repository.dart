@@ -4,6 +4,8 @@ import 'package:tasky/models/task_model.dart';
 abstract class BaseLocalStorageRepository {
   Future<Box> openPbox();
   Future<Box> openCbox();
+  //Future<Box> openTBox();
+
   List<Task> getPendingTasks(Box box);
   Future<void> addPendingTask(Box box, Task task);
   Future<void> removePendingTask(Box box, Task task, int index);
@@ -12,4 +14,8 @@ abstract class BaseLocalStorageRepository {
   Future<void> removeCompletedTask(Box box, Task task, int index);
   Future<void> clearP(Box box);
   Future<void> clearC(Box box);
+  //Future<void> clearTheme(Box box);
+  ////////
+  Future<bool> getTheme();
+  Future<void> setTheme(bool value);
 }

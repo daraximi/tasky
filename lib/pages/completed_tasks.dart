@@ -33,7 +33,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
                 decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.circular(20)),
-                height: 300.h,
+                height: MediaQuery.of(context).size.height,
                 width: 345.w,
                 child: ListView.builder(
                   itemCount: completedTasks.length,

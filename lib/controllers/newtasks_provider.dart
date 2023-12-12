@@ -50,4 +50,18 @@ class TaskProvider with ChangeNotifier {
     _localStorageRepository.removeCompletedTask(box, task, index);
     notifyListeners();
   }
+
+  ThemeMode themeMode = ThemeMode.dark;
+  bool get isDarkMode => themeMode == ThemeMode.dark;
+
+  void toggleTheme(bool value) {
+    themeMode = value ? ThemeMode.dark : ThemeMode.light;
+    _localStorageRepository.setTheme(value);
+    notifyListeners();
+  }
+
+  getTheme() async {
+    final value = _localStorageRepository.getTheme();
+    themeMode = await value ? ThemeMode.dark : ThemeMode.light;
+  }
 }
